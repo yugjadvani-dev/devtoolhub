@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { Separator } from "./ui/separator";
 
 const Footer = () => {
@@ -16,7 +15,7 @@ const Footer = () => {
         <Separator className="my-4" />
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium leading-none text-white">
-            © 2024 - {date.getFullYear()} Yug Jadvani's Tools
+            © 2024 - {date.getFullYear()} Yug Jadvani&apos;s Tools
           </p>
           <div className="flex h-5 items-center space-x-4 text-sm">
             <Link
