@@ -6,7 +6,6 @@ const Home: React.FC = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between py-24">
       <div className="container">
-        <div>
           <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             Welcome to DevToolHub
           </h1>
@@ -63,8 +62,6 @@ const Home: React.FC = () => {
           <p className="leading-7 [&:not(:first-child)]:mt-6">
             Thank you for using DevToolHub. Happy coding!
           </p>
-        </div>
-
       </div>
     </main>
   );
