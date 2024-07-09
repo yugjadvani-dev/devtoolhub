@@ -1,74 +1,70 @@
 "use client";
-
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/components/ui/use-toast";
-import axios from "axios";
-import React, { useState } from "react";
+import Link from "next/link";
+import React from "react";
 
 const Home: React.FC = () => {
-  const [inputCss, setInputCss] = useState("");
-  const [minifiedCss, setMinifiedCss] = useState<string | null>(null);
-
-  const { toast } = useToast()
-
-  const handleMinify = async () => {
-    try {
-      const result = await axios.post("/api/raw", { input: inputCss });
-      setMinifiedCss(result.data.minifiedCss);
-    } catch (error) {
-      console.error("Error fetching minified CSS:", error);
-      // Handle error (e.g., show an error message)
-    }
-  };
-
-  const copyToClipboard = (text: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        toast({
-          title: "Text copied to clipboard",
-        })
-      }).catch((err) => {
-        toast({
-          title: "Could not copy text",
-          description: err,
-          variant: "destructive",
-        })
-      })
-    }
-  }
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between py-24">
       <div className="container">
         <div>
-          <h4 className="scroll-m-20 mb-10 text-xl font-semibold tracking-tight">
-            DevToolHub offers a comprehensive suite of free online tools for developers, including formatters, validators, minifiers, escapers, encoders, decoders, message digesters, and various web resources, with regular updates and a commitment to user feedback.
-          </h4>
-          <div>
-            <Label htmlFor="inputcss" className="mb-3 flex">Css for minify</Label>
-            <Textarea
-              value={inputCss}
-              onChange={(e) => setInputCss(e.target.value)}
-              placeholder="Enter your CSS here..."
-              className="resize-none h-96"
-            />
-          </div>
-          <div className="flex items-center justify-between mt-3">
-            <Button disabled={inputCss ? false : true} onClick={() => setInputCss("")} variant={"outline"}>Clear</Button>
-            <Button disabled={inputCss ? false : true} onClick={handleMinify} className="">Minify CSS</Button>
-          </div>
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Welcome to DevToolHub
+          </h1>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            DevToolHub is a comprehensive suite of free online tools designed to assist developers in their everyday tasks. Our tools include formatters, validators, code minifiers, string escapers, encoders and decoders, message digesters, and a variety of other web resources.
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            This platform is built by developers for developers, offering a free and accessible way to streamline your workflow. We regularly add new tools, so be sure to bookmark this site and check back often.
+          </p>
+          <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+            Get Involved
+          </h2>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Your feedback is invaluable to us. If you encounter any bugs or have suggestions for new tools, please don't hesitate to reach out. You can send an email to 
+            <a
+              href="mailto:yugjadvani@gmail.com"
+              className="font-medium text-primary underline underline-offset-4"
+            >
+              {" "} yugjadvani@gmail.com {" "}
+            </a>
+            with details such as the browser version you're using and steps to reproduce any issues. Other comments and suggestions are always welcome.
+          </p>
+          <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+            Stay Connected
+          </h3>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Follow us on social media to stay updated with the latest tools and features:
+          </p>
+          <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+            <li>
+              <Link href="https://x.com/jadvani_yug" className="font-medium text-primary underline underline-offset-4">Twitter</Link>
+            </li>
+            <li>
+              <Link href="https://github.com/yugjadvani-dev" className="font-medium text-primary underline underline-offset-4">GitHub</Link>
+            </li>
+            <li>
+              <Link href="https://www.linkedin.com/in/yug-jadvani" className="font-medium text-primary underline underline-offset-4">LinkedIn</Link>
+            </li>
+          </ul>
+          <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+            Your Feedback Matters
+          </h3>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            We are committed to continuous improvement and your feedback helps us achieve that. Share your thoughts with us by clicking the link below:
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            <Link
+              href="https://truefeedback-nu.vercel.app"
+              className="font-medium text-primary underline underline-offset-4"
+            >
+              Submit Feedback
+            </Link>
+          </p>
+          <p className="leading-7 [&:not(:first-child)]:mt-6">
+            Thank you for using DevToolHub. Happy coding!
+          </p>
         </div>
-        {minifiedCss ?
-          <div className="mt-16">
-            <Label htmlFor="inputcss" className="mb-3 flex">Output</Label>
-            {minifiedCss && <pre className="flex min-h-96 w-full rounded-md border border-input bg-indigo-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">{minifiedCss}</pre>}
-            <Button onClick={() => copyToClipboard(minifiedCss)} className="mt-3 ml-auto flex">
-              Copy to Clipboard
-            </Button>
-          </div> : null
-        }
+
       </div>
     </main>
   );
