@@ -20,14 +20,14 @@ const Home: React.FC = () => {
             Get Involved
           </h2>
           <p className="leading-7 [&:not(:first-child)]:mt-6">
-            Your feedback is invaluable to us. If you encounter any bugs or have suggestions for new tools, please don't hesitate to reach out. You can send an email to 
+            Your feedback is invaluable to us. If you encounter any bugs or have suggestions for new tools, please don&apos;t hesitate to reach out. You can send an email to 
             <a
               href="mailto:yugjadvani@gmail.com"
               className="font-medium text-primary underline underline-offset-4"
             >
               {" "} yugjadvani@gmail.com {" "}
             </a>
-            with details such as the browser version you're using and steps to reproduce any issues. Other comments and suggestions are always welcome.
+            with details such as the browser version you&apos;re using and steps to reproduce any issues. Other comments and suggestions are always welcome.
           </p>
           <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
             Stay Connected
