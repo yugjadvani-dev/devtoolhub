@@ -1,5 +1,4 @@
 "use client";
-import Sidebar from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -43,7 +42,7 @@ const CssMinify: React.FC = () => {
         <section className="flex min-h-screen flex-col items-center justify-between">
             <div className="container">
                 <div className="flex items-start gap-4">
-                    <Sidebar />
+                    {/* <Sidebar /> */}
                     <div className="w-full p-8">
                         <Label htmlFor="inputcss" className="mb-3 flex">Css for minify</Label>
                         <Textarea

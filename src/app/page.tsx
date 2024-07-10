@@ -16,6 +16,34 @@ const Home: React.FC = () => {
             This platform is built by developers for developers, offering a free and accessible way to streamline your workflow. We regularly add new tools, so be sure to bookmark this site and check back often.
           </p>
           <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+        Our Vision
+      </h2>
+      <p className="leading-7 [&:not(:first-child)]:mt-6">
+        At DevToolHub, our vision is clear: to provide developers with a comprehensive, user-friendly toolkit that covers a wide range of needs. From formatters and validators to code minifiers and string escapers, we've got you covered.
+      </p>
+      <blockquote className="mt-6 border-l-2 pl-6 italic">
+        "A well-equipped developer is an unstoppable force in the tech world."
+      </blockquote>
+      
+      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+        Our Tools
+      </h3>
+      <p className="leading-7 [&:not(:first-child)]:mt-6">
+        Our diverse range of tools includes:
+      </p>
+      <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+        <li>Formatters for various programming languages</li>
+        <li>Validators to ensure your code meets standards</li>
+        <li>Minifiers to optimize your code</li>
+        <li>String escapers for secure coding</li>
+        <li>Encoders and decoders for data transformation</li>
+        <li>Message digesters for hashing and security</li>
+        <li>Various web resources to aid your development process</li>
+      </ul>
+      <p className="leading-7 [&:not(:first-child)]:mt-6">
+        Each tool is designed to be intuitive and efficient, allowing you to focus on what you do best: developing amazing software.
+      </p>
+          <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
             Get Involved
           </h2>
           <p className="leading-7 [&:not(:first-child)]:mt-6">

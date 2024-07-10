@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
                 <ListItem nested>
                     <ListItem component="div" startAction={<ReceiptLong />}>
                         <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
-                            Documentation
+                            Tools's
                         </Typography>
                     </ListItem>
                     <List sx={{ '--List-gap': '0px' }}>
@@ -65,9 +65,9 @@ const Sidebar: React.FC = () => {
                         </ListItem>
                     </List>
                 </ListItem>
-                <ListItem sx={{ '--List-gap': '0px' }}>
+                {/* <ListItem sx={{ '--List-gap': '0px' }}>
                     <ListItemButton>Quick Start</ListItemButton>
-                </ListItem>
+                </ListItem> */}
                 <ListItem
                     nested
                     sx={{ my: 1 }}
@@ -119,7 +119,7 @@ const Sidebar: React.FC = () => {
                         </List>
                     )}
                 </ListItem>
-                <ListItem
+                {/* <ListItem
                     nested
                     sx={{ my: 1 }}
                     startAction={
@@ -165,7 +165,7 @@ const Sidebar: React.FC = () => {
                             </ListItem>
                         </List>
                     )}
-                </ListItem>
+                </ListItem> */}
             </List>
         </Box>
     )
