@@ -40,7 +40,7 @@ const CssMinify: React.FC = () => {
     }
 
     return (
-        <section className="flex flex-col items-center justify-between">
+        <section className="flex min-h-screen flex-col items-center justify-between">
             <div className="container">
                 <div className="flex items-start gap-4">
                     <Sidebar />

@@ -17,6 +17,7 @@ const Sidebar: React.FC = () => {
         <Box
             sx={{
                 width: 320,
+                pt:'2rem',
                 pl: '24px',
             }}
         >
