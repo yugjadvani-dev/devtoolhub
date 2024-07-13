@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
                 <ListItem nested>
                     <ListItem component="div" startAction={<ReceiptLong />}>
                         <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
-                            Tools's
+                            Tools&apos;s
                         </Typography>
                     </ListItem>
                     <List sx={{ '--List-gap': '0px' }}>

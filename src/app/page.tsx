@@ -19,10 +19,10 @@ const Home: React.FC = () => {
         Our Vision
       </h2>
       <p className="leading-7 [&:not(:first-child)]:mt-6">
-        At DevToolHub, our vision is clear: to provide developers with a comprehensive, user-friendly toolkit that covers a wide range of needs. From formatters and validators to code minifiers and string escapers, we've got you covered.
+        At DevToolHub, our vision is clear: to provide developers with a comprehensive, user-friendly toolkit that covers a wide range of needs. From formatters and validators to code minifiers and string escapers, we&lsquo;ve got you covered.
       </p>
       <blockquote className="mt-6 border-l-2 pl-6 italic">
-        "A well-equipped developer is an unstoppable force in the tech world."
+      &ldquo;A well-equipped developer is an unstoppable force in the tech world.&ldquo;
       </blockquote>
       
       <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
