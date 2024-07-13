@@ -4,22 +4,23 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import axios from "axios";
-import React, { useState } from "react";
+import { ApiResponse } from "@/types/ApiResponse";
+import axios, { AxiosError } from "axios";
+import React from "react";
 
 const CssMinify: React.FC = () => {
-    const [inputCss, setInputCss] = useState("");
-    const [minifiedCss, setMinifiedCss] = useState<string | null>(null);
+    const [inputCss, setInputCss] = React.useState("");
+    const [minifiedCss, setMinifiedCss] = React.useState<string | null>(null);
 
     const { toast } = useToast()
 
     const handleMinify = async () => {
         try {
             const result = await axios.post("/api/raw", { input: inputCss });
-            setMinifiedCss(result.data.minifiedCss);
+            setMinifiedCss(result.data.minifiedCSS);
         } catch (error) {
-            console.error("Error fetching minified CSS:", error);
-            // Handle error (e.g., show an error message)
+            const axiosError = error as AxiosError<ApiResponse>;
+            console.error("Error fetching minified CSS:", axiosError);
         }
     };
 

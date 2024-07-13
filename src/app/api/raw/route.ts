@@ -1,33 +1,52 @@
-import { NextRequest, NextResponse } from "next/server";
-import fetch from "node-fetch";
+import CleanCSS from 'clean-css';
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request, res: Response) {
   try {
-    const { input: cssCode } = await req.json(); // Get the CSS code from the request body
-    if (!cssCode) {
-      return NextResponse.json(
-        { error: "CSS code is required" },
-        { status: 400 }
-      );
+    if (req.method === 'POST') {
+      const { input }: any = await req.json();
+
+      if (!input || typeof input !== 'string') {
+        return Response.json({
+          satus: 400,
+          error: 'Invalid CSS input'
+        });
+      }
+
+      const options: CleanCSS.OptionsOutput = {
+        level: {
+          1: {
+            all: true,
+          },
+          2: {
+            all: true,
+            restructureRules: true,
+          },
+        },
+        // format: 'keep-breaks', // Use 'keep-breaks' or remove if not needed
+      };
+
+      const minifiedCSS = new CleanCSS(options).minify(input);
+
+      if (minifiedCSS.errors.length > 0) {
+        return Response.json({
+          status: 500,
+          error: 'CSS minification failed', details: minifiedCSS.errors
+        });
+      }
+
+      return Response.json({
+        status: 200,
+        minifiedCSS: minifiedCSS.styles
+      });
+    } else {
+      return Response.json({
+        status: 405,
+        message: `Method ${req.method} Not Allowed`
+      })
     }
-
-    const response = await fetch(process.env.BASEURL || "", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({ input: cssCode }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
-
-    const minifiedCss = await response.text();
-    return NextResponse.json({ minifiedCss }, { status: 200 });
   } catch (error) {
     console.error("Error fetching CSS minified data:", error);
-    return NextResponse.json(
+    return Response.json(
       { error: "Internal server error" },
       { status: 500 }
     );
