@@ -14,7 +14,7 @@ const Footer = () => {
           <strong>DevToolHub</strong>
         </Link>
         <Separator className="my-4" />
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <p className="text-sm font-medium leading-none text-white">
             © 2024 - {date.getFullYear()} Yug Jadvani&apos;s Tools
           </p>

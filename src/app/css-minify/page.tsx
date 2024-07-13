@@ -41,11 +41,13 @@ const CssMinify: React.FC = () => {
     }
 
     return (
-        <section className="flex min-h-screen flex-col items-center justify-between">
+        <section className="flex min-h-screen pb-6 flex-col items-center justify-between">
             <div className="container">
-                <div className="flex items-start gap-4">
+                <div className="grid grid-cols-5 gap-4">
+                    <div className="col-span-1">
                     <Sidebar />
-                    <div className="w-full p-8">
+                    </div>
+                    <div className="col-span-4 w-full p-8">
                         <Label htmlFor="inputcss" className="mb-3 flex">Css for minify</Label>
                         <Textarea
                             value={inputCss}
