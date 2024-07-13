@@ -7,11 +7,14 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const Sidebar: React.FC = () => {
     const [open, setOpen] = React.useState(false);
     const [open2, setOpen2] = React.useState(false);
+
+    const pathname = usePathname()
 
     return (
         <Box
@@ -61,13 +64,10 @@ const Sidebar: React.FC = () => {
                     </ListItem>
                     <List sx={{ '--List-gap': '0px' }}>
                         <ListItem>
-                            <ListItemButton selected>Overview</ListItemButton>
+                            <ListItemButton>Overview</ListItemButton>
                         </ListItem>
                     </List>
                 </ListItem>
-                {/* <ListItem sx={{ '--List-gap': '0px' }}>
-                    <ListItemButton>Quick Start</ListItemButton>
-                </ListItem> */}
                 <ListItem
                     nested
                     sx={{ my: 1 }}
@@ -92,80 +92,17 @@ const Sidebar: React.FC = () => {
                                 color: open ? 'text.primary' : 'inherit',
                             }}
                         >
-                            Tutorial
-                        </Typography>
-                        <Typography component="span" level="body-xs">
-                            9
+                            Formatters
                         </Typography>
                     </ListItem>
                     {open && (
                         <List sx={{ '--ListItem-paddingY': '8px' }}>
                             <ListItem>
-                                <ListItemButton>Overview</ListItemButton>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemButton>
-                                    0. Set Up Your Development Environment
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemButton>
-                                    1. Create and Deploy Your First Gatsby Site
-                                </ListItemButton>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemButton>2. Use and Style React components</ListItemButton>
+                                <ListItemButton component="a" href="/css-minify" selected={pathname === '/css-minify' ? true : false}>CSS Minify</ListItemButton>
                             </ListItem>
                         </List>
                     )}
                 </ListItem>
-                {/* <ListItem
-                    nested
-                    sx={{ my: 1 }}
-                    startAction={
-                        <IconButton
-                            variant="plain"
-                            size="sm"
-                            color="neutral"
-                            onClick={() => setOpen2((bool) => !bool)}
-                        >
-                            <KeyboardArrowDown
-                                sx={{ transform: open2 ? 'initial' : 'rotate(-90deg)' }}
-                            />
-                        </IconButton>
-                    }
-                >
-                    <ListItem>
-                        <Typography
-                            level="inherit"
-                            sx={{
-                                fontWeight: open2 ? 'bold' : undefined,
-                                color: open2 ? 'text.primary' : 'inherit',
-                            }}
-                        >
-                            How-to Guides
-                        </Typography>
-                        <Typography component="span" level="body-xs">
-                            39
-                        </Typography>
-                    </ListItem>
-                    {open2 && (
-                        <List sx={{ '--ListItem-paddingY': '8px' }}>
-                            <ListItem>
-                                <ListItemButton>Overview</ListItemButton>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemButton>Local Development</ListItemButton>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemButton>Routing</ListItemButton>
-                            </ListItem>
-                            <ListItem>
-                                <ListItemButton>Styling</ListItemButton>
-                            </ListItem>
-                        </List>
-                    )}
-                </ListItem> */}
             </List>
         </Box>
     )

@@ -34,7 +34,7 @@ const Home: React.FC = () => {
       <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
         <li>Formatters for various programming languages</li>
         <li>Validators to ensure your code meets standards</li>
-        <li>Minifiers to optimize your code</li>
+        <li>CSS Minifiers to optimize your code</li>
         <li>String escapers for secure coding</li>
         <li>Encoders and decoders for data transformation</li>
         <li>Message digesters for hashing and security</li>
