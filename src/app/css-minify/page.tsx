@@ -62,7 +62,7 @@ const CssMinify: React.FC = () => {
                         {minifiedCss
                             ? <div className="mt-16">
                                 <Label htmlFor="inputcss" className="mb-3 flex">Output</Label>
-                                {minifiedCss && <pre className="flex h-full max-h-[30rem] overflow-scroll w-full rounded-md border border-input bg-indigo-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-normal">{minifiedCss}</pre>}
+                                {minifiedCss && <pre className="flex h-full max-h-[30rem] overflow-y-scroll w-full rounded-md border border-input bg-indigo-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-normal">{minifiedCss}</pre>}
                                 <Button onClick={() => copyToClipboard(minifiedCss)} className="mt-3 ml-auto flex">
                                     Copy to Clipboard
                                 </Button>

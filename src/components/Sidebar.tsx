@@ -92,7 +92,7 @@ const Sidebar: React.FC = () => {
                                 color: open ? 'text.primary' : 'inherit',
                             }}
                         >
-                            Formatters
+                            Code Minifiers
                         </Typography>
                     </ListItem>
                     {open && (
