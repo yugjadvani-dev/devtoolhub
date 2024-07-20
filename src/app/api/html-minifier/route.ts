@@ -1,7 +1,7 @@
-import { minify } from "html-minifier";
+import { minify } from 'html-minifier-terser';
 
 export async function POST(request: Request, response: Request) {
-//   try {
+  try {
     if (request.method === "POST") {
       const { html } = await request.json();
 
@@ -13,12 +13,11 @@ export async function POST(request: Request, response: Request) {
       }
 
       try {
-        const minifiedHtml = minify(html, {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
+        const minifiedHtml = await minify(html, {
           removeComments: true,
-          minifyCSS: true,
+          collapseWhitespace: true,
           minifyJS: true,
+          minifyCSS: true,
         });
 
         return Response.json({
@@ -37,8 +36,8 @@ export async function POST(request: Request, response: Request) {
         message: `Method ${request.method} Not Allowed`,
       });
     }
-//   } catch (error) {
-//     console.error("Error fetching CSS minified data:", error);
-//     return Response.json({ error: "Internal server error" }, { status: 500 });
-//   }
+  } catch (error) {
+    console.error("Error fetching CSS minified data:", error);
+    return Response.json({ error: "Internal server error" }, { status: 500 });
+  }
 }

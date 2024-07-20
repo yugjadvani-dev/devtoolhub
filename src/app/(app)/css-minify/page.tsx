@@ -10,7 +10,7 @@ import axios, { AxiosError } from "axios";
 import React from "react";
 
 const CssMinify: React.FC = () => {
-  const [inputCss, setInputCss] = React.useState("");
+  const [inputCss, setInputCss] = React.useState<string>("");
   const [minifiedCss, setMinifiedCss] = React.useState<string | null>(null);
 
   const { toast } = useToast();
@@ -18,7 +18,7 @@ const CssMinify: React.FC = () => {
   const handleMinify = async () => {
     try {
       const result = await axios.post("/api/css-minify", { input: inputCss });
-      setMinifiedCss(result.data.minifiedCSS);
+      setMinifiedCss(result?.data?.minifiedCSS);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       console.error("Error fetching minified CSS:", axiosError);

@@ -22,7 +22,7 @@
     "class-variance-authority": "^0.7.0",
     "clean-css": "^5.3.3",
     "clsx": "^2.1.1",
-    "html-minifier": "^4.0.0",
+    "html-minifier-terser": "^7.2.0",
     "lucide-react": "^0.396.0",
     "next": "14.2.4",
     "node-fetch": "^3.3.2",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@types/clean-css": "^4.2.11",
-    "@types/html-minifier": "^4.0.5",
+    "@types/html-minifier-terser": "^7.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
