@@ -21,7 +21,10 @@ const CssMinify: React.FC = () => {
       setMinifiedCss(result?.data?.minifiedCSS);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      console.error("Error fetching minified CSS:", axiosError);
+      toast({
+        title: `Error fetching minified HTML:, ${axiosError}`,
+        variant: "destructive",
+      });
     }
   };
 
@@ -100,7 +103,6 @@ const CssMinify: React.FC = () => {
                 </Button>
               </div>
             ) : null}
-
             {/* Overview */}
             <CSSMinifyToolOverview />
           </div>

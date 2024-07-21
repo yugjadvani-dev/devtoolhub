@@ -9,8 +9,6 @@ const Header = () => {
           <Link href={'/'} className="text-2xl font-bold text-white">
             <strong>DevToolHub</strong>
           </Link>
-
-          <Link href={'/css-minify'} className='font-medium text-white underline underline-offset-4'>CSS Minify</Link>
         </div>
       </div>
     </header>

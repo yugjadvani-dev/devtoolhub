@@ -11,8 +11,6 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const Sidebar: React.FC = () => {
-    const [open, setOpen] = React.useState(false);
-    const [open2, setOpen2] = React.useState(false);
 
     const pathname = usePathname()
 
@@ -20,7 +18,7 @@ const Sidebar: React.FC = () => {
         <Box
             sx={{
                 width: 320,
-                pt:'2rem',
+                pt: '2rem',
                 pl: '24px',
             }}
         >
@@ -64,7 +62,7 @@ const Sidebar: React.FC = () => {
                     </ListItem>
                     <List sx={{ '--List-gap': '0px' }}>
                         <ListItem>
-                            <ListItemButton>Overview</ListItemButton>
+                            <ListItemButton component="a" href="/" selected={pathname === '/' ? true : false}>Overview</ListItemButton>
                         </ListItem>
                     </List>
                 </ListItem>
@@ -76,11 +74,8 @@ const Sidebar: React.FC = () => {
                             variant="plain"
                             size="sm"
                             color="neutral"
-                            onClick={() => setOpen(!open)}
                         >
-                            <KeyboardArrowDown
-                                sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }}
-                            />
+                            <KeyboardArrowDown />
                         </IconButton>
                     }
                 >
@@ -88,20 +83,21 @@ const Sidebar: React.FC = () => {
                         <Typography
                             level="inherit"
                             sx={{
-                                fontWeight: open ? 'bold' : undefined,
-                                color: open ? 'text.primary' : 'inherit',
+                                fontWeight: 'bold',
+                                color: 'text.primary',
                             }}
                         >
                             Code Minifiers
                         </Typography>
                     </ListItem>
-                    {open && (
-                        <List sx={{ '--ListItem-paddingY': '8px' }}>
-                            <ListItem>
-                                <ListItemButton component="a" href="/css-minify" selected={pathname === '/css-minify' ? true : false}>CSS Minify</ListItemButton>
-                            </ListItem>
-                        </List>
-                    )}
+                    <List sx={{ '--ListItem-paddingY': '8px' }}>
+                        <ListItem>
+                            <ListItemButton component="a" href="/html-minify" selected={pathname === '/html-minify' ? true : false}>HTML Minify</ListItemButton>
+                        </ListItem>
+                        <ListItem>
+                            <ListItemButton component="a" href="/css-minify" selected={pathname === '/css-minify' ? true : false}>CSS Minify</ListItemButton>
+                        </ListItem>
+                    </List>
                 </ListItem>
             </List>
         </Box>

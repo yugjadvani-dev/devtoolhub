@@ -1,6 +1,9 @@
 "use client";
+import HtmlMinifyToolOverview from '@/components/(overview)/HtmlMinifyToolOverview';
+import CheckboxWithText from '@/components/CheckboxWithText';
 import Sidebar from '@/components/Sidebar';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
@@ -8,20 +11,37 @@ import { ApiResponse } from '@/types/ApiResponse';
 import axios, { AxiosError } from 'axios';
 import React from 'react';
 
+interface OptionsState {
+    caseSensitive: boolean
+}
+
 const HTMLMinify: React.FC = () => {
     const [inputHtml, setInputHtml] = React.useState<string>("");
     const [minifyHtml, setMinifyHtml] = React.useState<string | null>(null);
+    const [options, setOptions] = React.useState<OptionsState>({
+        caseSensitive: false
+    })
+    console.log("options",options)
 
     const { toast } = useToast();
+
+    const handleOptionsChange = (id: string, value: boolean) => {
+        setOptions((prev)=>({
+            ...prev,
+            [id]: value,
+        }))
+    } 
 
     const handleMinify = async () => {
         try {
             const result = await axios.post("/api/html-minifier", { html: inputHtml });
-            console.log(result);
             setMinifyHtml(result?.data?.minifiedHtml);
         } catch (error) {
             const axiosError = error as AxiosError<ApiResponse>;
-            console.error("Error fetching minified HTML:", axiosError);
+            toast({
+                title: `Error fetching minified HTML:, ${axiosError}`,
+                variant: "destructive",
+              });
         }
     };
 
@@ -48,6 +68,7 @@ const HTMLMinify: React.FC = () => {
                 });
         }
     };
+
     return (
         <>
             <section className="flex min-h-screen pb-6 flex-col items-center justify-between">
@@ -57,9 +78,33 @@ const HTMLMinify: React.FC = () => {
                             <Sidebar />
                         </div>
                         <div className="col-span-4 w-full p-8">
-                            <Label htmlFor="inputhtml" className="mb-3 flex">
-                                HTML for minify
-                            </Label>
+                            <div className='flex items-center justify-between gap-4 mb-3'>
+                                <Label htmlFor="inputhtml" className="flex">
+                                    HTML for minify
+                                </Label>
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button variant="secondary">Option's</Button>
+                                        {/* <button className="font-medium text-primary underline underline-offset-4">
+                                            Option's
+                                        </button> */}
+                                    </DialogTrigger>
+                                    <DialogContent className="sm:max-w-[425px]">
+                                        <DialogHeader>
+                                            <DialogTitle>Options Quick Reference</DialogTitle>
+                                            <DialogDescription>
+                                            Most of the options are disabled by default.
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="grid gap-4 py-4">
+                                            <CheckboxWithText id={'caseSensitive'} label='caseSensitive' description='Treat attributes in case sensitive manner (useful for custom HTML tags)   ' checked={options.caseSensitive} onChange={handleOptionsChange} />
+                                        </div>
+                                        <DialogFooter>
+                                            <Button type="submit">Save changes</Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
                             <Textarea
                                 value={inputHtml}
                                 onChange={(e) => setInputHtml(e.target.value)}
@@ -100,6 +145,8 @@ const HTMLMinify: React.FC = () => {
                                     </Button>
                                 </div>
                             ) : null}
+                            {/* Overview */}
+                            <HtmlMinifyToolOverview />
                         </div>
                     </div>
                 </div>

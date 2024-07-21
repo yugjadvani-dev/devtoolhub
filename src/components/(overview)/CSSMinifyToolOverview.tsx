@@ -1,4 +1,7 @@
-const CSSMinifyToolOverview = () => {
+"use client";
+import React from 'react';
+
+const CSSMinifyToolOverview:React.FC = () => {
     return (
       <div className="mt-12">
         <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">
@@ -23,24 +26,11 @@ const CSSMinifyToolOverview = () => {
           Example
         </h3>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
-          Consider the following CSS snippet before and after minification:
+          Consider the following CSS snippet before minification:
         </p>
-        <div className="my-6 w-full overflow-y-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="m-0 border-t p-0 even:bg-muted">
-                <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
-                  Before Minification
-                </th>
-                <th className="border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right">
-                  After Minification
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="m-0 border-t p-0 even:bg-muted">
-                <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                  {`body {
+        <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
+        <code>
+          {`body {
     background-color: #ffffff;
     font-size: 16px;
   }
@@ -50,14 +40,27 @@ const CSSMinifyToolOverview = () => {
     color: #333333;
     padding: 20px;
   }`}
-                </td>
-                <td className="border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right">
-                  {`body{background-color:#fff;font-size:16px}header{color:#333;padding:20px}`}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        </code>
+      </pre>
+      <p className="leading-7 [&:not(:first-child)]:mt-6">
+        After using the CSS Minify Tool, the output is:
+      </p>
+      <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
+        <code>
+          {`body{background-color:#fff;font-size:16px}header{color:#333;padding:20px}`}
+        </code>
+      </pre>
+      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+        Benefits
+      </h3>
+      <p className="leading-7 [&:not(:first-child)]:mt-6">
+        The CSS Minify Tool offers several benefits:
+      </p>
+      <ul className="my-6 ml-6 list-disc [&>li]:mt-2">
+        <li>Reduces file size, leading to faster load times.</li>
+        <li>Improves website performance and user experience.</li>
+        <li>Decreases bandwidth usage.</li>
+      </ul>
         <p className="leading-7 [&:not(:first-child)]:mt-6">
           As you can see, the minified version of the CSS is much shorter, making your website load faster and use less bandwidth.
         </p>
