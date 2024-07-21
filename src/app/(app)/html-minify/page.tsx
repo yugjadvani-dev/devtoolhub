@@ -32,9 +32,16 @@ const HTMLMinify: React.FC = () => {
         }))
     } 
 
+    const handleOptionsSave = () => {
+
+    }
+
     const handleMinify = async () => {
         try {
-            const result = await axios.post("/api/html-minifier", { html: inputHtml });
+            const axiosBody = {
+                html: inputHtml,
+            }
+            const result = await axios.post("/api/html-minifier", axiosBody);
             setMinifyHtml(result?.data?.minifiedHtml);
         } catch (error) {
             const axiosError = error as AxiosError<ApiResponse>;
@@ -100,7 +107,7 @@ const HTMLMinify: React.FC = () => {
                                             <CheckboxWithText id={'caseSensitive'} label='caseSensitive' description='Treat attributes in case sensitive manner (useful for custom HTML tags)   ' checked={options.caseSensitive} onChange={handleOptionsChange} />
                                         </div>
                                         <DialogFooter>
-                                            <Button type="submit">Save changes</Button>
+                                            <Button onClick={handleOptionsSave}>Save changes</Button>
                                         </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
