@@ -22,7 +22,7 @@ const HtmlMinifyToolOverview: React.FC = () => {
         <li>Condenses inline CSS and JavaScript.</li>
       </ul>
       <blockquote className="mt-6 border-l-2 pl-6 italic">
-        "Efficiency is doing better what is already being done." – Peter Drucker
+      &ldquo;Efficiency is doing better what is already being done.&ldquo; – Peter Drucker
       </blockquote>
       <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
         Example

@@ -91,7 +91,7 @@ const HTMLMinify: React.FC = () => {
                                 </Label>
                                 <Dialog>
                                     <DialogTrigger asChild>
-                                        <Button variant="secondary">Option's</Button>
+                                        <Button variant="secondary">Option&lsquo;s</Button>
                                         {/* <button className="font-medium text-primary underline underline-offset-4">
                                             Option's
                                         </button> */}
