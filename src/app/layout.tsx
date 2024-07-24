@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import { PHProvider } from "./providers";
+import PostHogPageView from "./PostHogPageView";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,22 +23,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <div className="container">
-          <div className="grid md:grid-cols-5 md:gap-4">
-            <div className="md:col-span-1 md:block hidden">
-              <Sidebar />
-            </div>
-            <div className="md:col-span-4 w-full py-8">
-              {children}
+      <PHProvider>
+        <body className={inter.className}>
+          <PostHogPageView />
+          <Header />
+          <div className="container">
+            <div className="grid md:grid-cols-5 md:gap-4">
+              <div className="md:col-span-1 md:block hidden">
+                <Sidebar />
+              </div>
+              <div className="md:col-span-4 w-full py-8">
+                {children}
+              </div>
             </div>
           </div>
-        </div>
-        <Footer />
-        <Toaster />
-        <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="yugjadvani9" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18" defer></script>
-      </body>
+          <Footer />
+          <Toaster />
+          <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="yugjadvani9" data-description="Support me on Buy me a coffee!" data-message="" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18" defer></script>
+        </body>
+      </PHProvider>
     </html>
   );
 }
