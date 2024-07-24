@@ -46,7 +46,7 @@ const CSSMinifyToolOverview:React.FC = () => {
         After using the CSS Minify Tool, the output is:
       </p>
       <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
-        <code>
+        <code className='whitespace-normal'>
           {`body{background-color:#fff;font-size:16px}header{color:#333;padding:20px}`}
         </code>
       </pre>

@@ -11,15 +11,15 @@ import Sidebar from './Sidebar';
 
 const Header = () => {
   return (
-    <header className='py-4 bg-primary flex items-center'>
+    <header className='py-4 bg-primary flex items-center w-full'>
       <div className="container">
         <div className='flex items-center justify-between'>
           <Link href={'/'} className="text-2xl font-bold text-white">
             <strong>DevToolHub</strong>
           </Link>
           <Sheet>
-            <SheetTrigger asChild className='md:hidden block'>
-              <Button><Menu /></Button>
+            <SheetTrigger asChild>
+              <Button className='md:hidden block'><Menu /></Button>
             </SheetTrigger>
             <SheetContent>
               <Sidebar />

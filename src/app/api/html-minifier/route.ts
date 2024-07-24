@@ -3,7 +3,8 @@ import { minify } from 'html-minifier-terser';
 export async function POST(request: Request, response: Request) {
   try {
     if (request.method === "POST") {
-      const { html } = await request.json();
+      const { html, options } = await request.json();
+      console.log("options", options);
 
       if (!html) {
         return Response.json({
@@ -14,10 +15,11 @@ export async function POST(request: Request, response: Request) {
 
       try {
         const minifiedHtml = await minify(html, {
-          removeComments: true,
-          collapseWhitespace: true,
-          minifyJS: true,
-          minifyCSS: true,
+          // removeComments: true,
+          // collapseWhitespace: true,
+          // minifyJS: true,
+          // minifyCSS: true,
+          ...options
         });
 
         return Response.json({
