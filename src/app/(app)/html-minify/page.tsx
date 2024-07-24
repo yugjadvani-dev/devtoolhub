@@ -104,7 +104,7 @@ const HTMLMinify: React.FC = () => {
                                             </DialogDescription>
                                         </DialogHeader>
                                         <div className="grid gap-4 py-4">
-                                            <CheckboxWithText id={'caseSensitive'} label='caseSensitive' description='Treat attributes in case sensitive manner (useful for custom HTML tags)   ' checked={options.caseSensitive} onChange={handleOptionsChange} />
+                                            <CheckboxWithText id={'caseSensitive'} label='caseSensitive' description='Treat attributes in case sensitive manner (useful for custom HTML tags)' checked={options.caseSensitive} onChange={handleOptionsChange} />
                                         </div>
                                         <DialogFooter>
                                             <Button onClick={handleOptionsSave}>Save changes</Button>
