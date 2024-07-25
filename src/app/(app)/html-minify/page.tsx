@@ -15,8 +15,10 @@ interface OptionsState {
     collapseBooleanAttributes: boolean;
     collapseInlineTagWhitespace: boolean;
     collapseWhitespace: boolean;
-    minifyJS: boolean;
+    conservativeCollapse:boolean;
+    continueOnParseError: boolean;
     minifyCSS: boolean;
+    minifyJS: boolean;
     removeComments: boolean;
 }
 
@@ -28,8 +30,10 @@ const HTMLMinify: React.FC = () => {
         collapseBooleanAttributes: false,
         collapseInlineTagWhitespace: false,
         collapseWhitespace: true,
-        minifyJS: true,
+        conservativeCollapse: true,
+        continueOnParseError: true,
         minifyCSS: true,
+        minifyJS: true,
         removeComments: true,
     });
 
@@ -129,6 +133,20 @@ const HTMLMinify: React.FC = () => {
                                 linkURL={'http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace'}
                                 description='Collapse white space that contributes to text nodes in a document tree'
                                 checked={options.collapseWhitespace}
+                                onChange={handleOptionsChange}
+                            />
+                            <CheckboxWithText
+                                id='conservativeCollapse'
+                                label='conservativeCollapse'
+                                description={`Always collapse to 1 space (never remove it entirely). Must be used in conjunction with  <code class="code">collapseWhitespace=true</code>`}
+                                checked={options.conservativeCollapse}
+                                onChange={handleOptionsChange}
+                            />
+                            <CheckboxWithText
+                                id='continueOnParseError'
+                                label='continueOnParseError'
+                                description='<a class="link" href="https://html.spec.whatwg.org/multipage/parsing.html#parse-errors">Handle parse errors</a> instead of aborting.'
+                                checked={options.continueOnParseError}
                                 onChange={handleOptionsChange}
                             />
                             <CheckboxWithText

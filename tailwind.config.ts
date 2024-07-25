@@ -69,10 +69,16 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        gradient: {
+          to: {
+            backgroundPosition: "var(--bg-size) 0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        gradient: "gradient 8s linear infinite",
       },
       spacing: {
         'px-0.25': '1px',

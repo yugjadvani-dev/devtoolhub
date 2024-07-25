@@ -1,10 +1,27 @@
 "use client"
+import { cn } from '@/lib/utils'
+import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
+import AnimatedGradientText from '../magicui/animated-gradient-text'
 
 const Overview: React.FC = () => {
     return (
         <>
+            <div className="z-10 flex items-start justify-start mb-8">
+                <AnimatedGradientText className='m-0'>
+                    ✨ <hr className="mx-2 h-4 w-[1px] shrink-0 bg-gray-300" />{" "}
+                    <span
+                        className={cn(
+                            `inline animate-gradient bg-gradient-to-r from-[#ffaa40] via-[#9c40ff] to-[#ffaa40] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent`,
+                        )}
+                    >
+                        Request a Tool & Feature
+                    </span>
+                    <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                </AnimatedGradientText>
+            </div>
+
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
                 Welcome to DevToolHub
             </h1>
