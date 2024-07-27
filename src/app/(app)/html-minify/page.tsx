@@ -39,7 +39,9 @@ const HTMLMinify: React.FC = () => {
     const [inputHtml, setInputHtml] = React.useState<string>("");
     const [minifyHtml, setMinifyHtml] = React.useState<string | null>(null);
     const [options, setOptions] = React.useState<OptionsState>(initialOptionsState);
-
+    console.log(options)
+    const [savedOptions, setSavedOptions] = React.useState<boolean>(false)
+console.log("savedOptions",savedOptions)
     const { toast } = useToast();
 
     const handleOptionsChange = (id: string, value: boolean) => {
@@ -53,7 +55,7 @@ const HTMLMinify: React.FC = () => {
         try {
             const axiosBody = {
                 html: inputHtml,
-                options,
+                options: savedOptions ? options : ''
             };
             const result = await axios.post("/api/html-minifier", axiosBody);
             setMinifyHtml(result?.data?.minifiedHtml);
@@ -93,64 +95,64 @@ const HTMLMinify: React.FC = () => {
     const checkboxData = [
         {
             id: 'caseSensitive',
-            label: 'caseSensitive',
+            label: 'Case Sensitive',
             description: 'Treat attributes in case sensitive manner (useful for custom HTML tags)',
             checked: options.caseSensitive,
             onChange: handleOptionsChange
         },
         {
             id: 'collapseBooleanAttributes',
-            label: 'collapseBooleanAttributes',
+            label: 'Collapse Boolean Attributes',
             description: 'Omit attribute values from boolean attributes',
             checked: options.collapseBooleanAttributes,
             onChange: handleOptionsChange,
         },
         {
             id: 'collapseInlineTagWhitespace',
-            label: 'collapseInlineTagWhitespace',
+            label: 'Collapse Inline Tag Whitespace',
             description: `Don't leave any spaces between <code class="code">display:inline;</code> elements when collapsing. Must be used in conjunction with <code class="code">collapseWhitespace=true</code>`,
             checked: options.collapseInlineTagWhitespace,
             onChange: handleOptionsChange,
         },
         {
             id: 'collapseWhitespace',
-            label: 'collapseWhitespace',
-            description: '<a class="link" href="http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace">Collapse white space that contributes to text nodes in a document tree</a>',
+            label: 'Collapse Whitespace',
+            description: '<a target="_blank" class="link" href="http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace">Collapse white space that contributes to text nodes in a document tree</a>',
             checked: options.collapseWhitespace,
             onChange: handleOptionsChange,
         },
         {
             id: 'conservativeCollapse',
-            label: 'conservativeCollapse',
+            label: 'Conservative Collapse',
             description: `Always collapse to 1 space (never remove it entirely). Must be used in conjunction with  <code class="code">collapseWhitespace=true</code>`,
             checked: options.conservativeCollapse,
             onChange: handleOptionsChange,
         },
         {
             id: 'continueOnParseError',
-            label: 'continueOnParseError',
-            description: '<a class="link" href="https://html.spec.whatwg.org/multipage/parsing.html#parse-errors">Handle parse errors</a> instead of aborting.',
+            label: 'Continue On ParseError',
+            description: '<a target="_blank" class="link" href="https://html.spec.whatwg.org/multipage/parsing.html#parse-errors">Handle parse errors</a> instead of aborting.',
             checked: options.continueOnParseError,
             onChange: handleOptionsChange,
         },
         {
             id: 'minifyCSS',
-            label: 'minifyCSS',
-            description: 'Minify CSS in style elements and style attributes (uses <a class="link" href="https://github.com/clean-css/clean-css">clean CSS</a>)',
+            label: 'Minify CSS',
+            description: 'Minify CSS in style elements and style attributes (uses <a target="_blank" class="link" href="https://github.com/clean-css/clean-css">clean CSS</a>)',
             checked: options.minifyCSS,
             onChange: handleOptionsChange,
         },
         {
             id: 'minifyJS',
-            label: 'minifyJS',
-            description: 'Minify JavaScript in script elements and event attributes (uses <a class="link" href="https://github.com/terser/terser">Terser</a>)',
+            label: 'Minify JS',
+            description: 'Minify JavaScript in script elements and event attributes (uses <a target="_blank" class="link" href="https://github.com/terser/terser">Terser</a>)',
             checked: options.minifyJS,
             onChange: handleOptionsChange,
         },
         {
             id: 'removeComments',
-            label: 'removeComments',
-            description: '<a class="link" href="http://perfectionkills.com/experimenting-with-html-minifier/#remove_comments">Strip HTML comments</a>',
+            label: 'Remove Comments',
+            description: '<a target="_blank" class="link" href="http://perfectionkills.com/experimenting-with-html-minifier/#remove_comments">Strip HTML comments</a>',
             checked: options.removeComments,
             onChange: handleOptionsChange,
         },
@@ -187,7 +189,7 @@ const HTMLMinify: React.FC = () => {
                         </div>
                         <DialogFooter>
                             <DialogClose asChild>
-                                <Button>Save changes</Button>
+                                <Button onClick={() => (setSavedOptions(!savedOptions))}>Save changes</Button>
                             </DialogClose>
                         </DialogFooter>
                     </DialogContent>
