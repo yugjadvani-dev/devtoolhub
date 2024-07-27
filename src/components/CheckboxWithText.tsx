@@ -1,19 +1,16 @@
 "use client";
 import React from 'react';
 import { Checkbox } from './ui/checkbox';
-import Link from 'next/link';
 
 interface CheckboxWithTextProps {
     id: string;
     label: string;
-    link?: boolean;
-    linkURL?: string | undefined;
     description: string;
     checked: boolean;
     onChange: (id: string, value: boolean) => void;
 }
 
-const CheckboxWithText: React.FC<CheckboxWithTextProps> = ({ id, label, link, linkURL, description, checked, onChange }) => {
+const CheckboxWithText: React.FC<CheckboxWithTextProps> = ({ id, label, description, checked, onChange }) => {
     return (
         <div className="items-top flex space-x-2">
             <Checkbox id={id} checked={checked} onCheckedChange={(value: any) => onChange(id, value)} />
@@ -24,10 +21,7 @@ const CheckboxWithText: React.FC<CheckboxWithTextProps> = ({ id, label, link, li
                 >
                     {label}
                 </label>
-                {link ?
-                    <Link href={linkURL || ''} className="text-sm text-primary underline underline-offset-4" dangerouslySetInnerHTML={{ __html: description }}></Link> :
-                    <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: description }}></p>
-                }
+                <p className="text-sm text-muted-foreground" dangerouslySetInnerHTML={{ __html: description }}></p>
             </div>
         </div>
     );

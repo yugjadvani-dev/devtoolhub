@@ -15,27 +15,30 @@ interface OptionsState {
     collapseBooleanAttributes: boolean;
     collapseInlineTagWhitespace: boolean;
     collapseWhitespace: boolean;
-    conservativeCollapse:boolean;
+    conservativeCollapse: boolean;
     continueOnParseError: boolean;
     minifyCSS: boolean;
     minifyJS: boolean;
     removeComments: boolean;
 }
 
+// Initial state for options
+const initialOptionsState: OptionsState = {
+    caseSensitive: false,
+    collapseBooleanAttributes: false,
+    collapseInlineTagWhitespace: false,
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+    continueOnParseError: true,
+    minifyCSS: true,
+    minifyJS: true,
+    removeComments: true,
+};
+
 const HTMLMinify: React.FC = () => {
     const [inputHtml, setInputHtml] = React.useState<string>("");
     const [minifyHtml, setMinifyHtml] = React.useState<string | null>(null);
-    const [options, setOptions] = React.useState<OptionsState>({
-        caseSensitive: false,
-        collapseBooleanAttributes: false,
-        collapseInlineTagWhitespace: false,
-        collapseWhitespace: true,
-        conservativeCollapse: true,
-        continueOnParseError: true,
-        minifyCSS: true,
-        minifyJS: true,
-        removeComments: true,
-    });
+    const [options, setOptions] = React.useState<OptionsState>(initialOptionsState);
 
     const { toast } = useToast();
 
@@ -87,6 +90,72 @@ const HTMLMinify: React.FC = () => {
         }
     };
 
+    const checkboxData = [
+        {
+            id: 'caseSensitive',
+            label: 'caseSensitive',
+            description: 'Treat attributes in case sensitive manner (useful for custom HTML tags)',
+            checked: options.caseSensitive,
+            onChange: handleOptionsChange
+        },
+        {
+            id: 'collapseBooleanAttributes',
+            label: 'collapseBooleanAttributes',
+            description: 'Omit attribute values from boolean attributes',
+            checked: options.collapseBooleanAttributes,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'collapseInlineTagWhitespace',
+            label: 'collapseInlineTagWhitespace',
+            description: `Don't leave any spaces between <code class="code">display:inline;</code> elements when collapsing. Must be used in conjunction with <code class="code">collapseWhitespace=true</code>`,
+            checked: options.collapseInlineTagWhitespace,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'collapseWhitespace',
+            label: 'collapseWhitespace',
+            description: '<a class="link" href="http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace">Collapse white space that contributes to text nodes in a document tree</a>',
+            checked: options.collapseWhitespace,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'conservativeCollapse',
+            label: 'conservativeCollapse',
+            description: `Always collapse to 1 space (never remove it entirely). Must be used in conjunction with  <code class="code">collapseWhitespace=true</code>`,
+            checked: options.conservativeCollapse,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'continueOnParseError',
+            label: 'continueOnParseError',
+            description: '<a class="link" href="https://html.spec.whatwg.org/multipage/parsing.html#parse-errors">Handle parse errors</a> instead of aborting.',
+            checked: options.continueOnParseError,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'minifyCSS',
+            label: 'minifyCSS',
+            description: 'Minify CSS in style elements and style attributes (uses <a class="link" href="https://github.com/clean-css/clean-css">clean CSS</a>)',
+            checked: options.minifyCSS,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'minifyJS',
+            label: 'minifyJS',
+            description: 'Minify JavaScript in script elements and event attributes (uses <a class="link" href="https://github.com/terser/terser">Terser</a>)',
+            checked: options.minifyJS,
+            onChange: handleOptionsChange,
+        },
+        {
+            id: 'removeComments',
+            label: 'removeComments',
+            description: '<a class="link" href="http://perfectionkills.com/experimenting-with-html-minifier/#remove_comments">Strip HTML comments</a>',
+            checked: options.removeComments,
+            onChange: handleOptionsChange,
+        },
+    ] as const;
+
     return (
         <>
             <div className='flex items-end justify-between gap-4 mb-3'>
@@ -105,73 +174,16 @@ const HTMLMinify: React.FC = () => {
                             </DialogDescription>
                         </DialogHeader>
                         <div className="grid gap-4 py-4">
-                            <CheckboxWithText
-                                id={'caseSensitive'}
-                                label='caseSensitive'
-                                description='Treat attributes in case sensitive manner (useful for custom HTML tags)'
-                                checked={options.caseSensitive}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='collapseBooleanAttributes'
-                                label='collapseBooleanAttributes'
-                                description='Omit attribute values from boolean attributes'
-                                checked={options.collapseBooleanAttributes}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='collapseInlineTagWhitespace'
-                                label='collapseInlineTagWhitespace'
-                                description={`Don't leave any spaces between <code class="code">display:inline;</code> elements when collapsing. Must be used in conjunction with <code class="code">collapseWhitespace=true</code>`}
-                                checked={options.collapseInlineTagWhitespace}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='collapseWhitespace'
-                                label='collapseWhitespace'
-                                link={true}
-                                linkURL={'http://perfectionkills.com/experimenting-with-html-minifier/#collapse_whitespace'}
-                                description='Collapse white space that contributes to text nodes in a document tree'
-                                checked={options.collapseWhitespace}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='conservativeCollapse'
-                                label='conservativeCollapse'
-                                description={`Always collapse to 1 space (never remove it entirely). Must be used in conjunction with  <code class="code">collapseWhitespace=true</code>`}
-                                checked={options.conservativeCollapse}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='continueOnParseError'
-                                label='continueOnParseError'
-                                description='<a class="link" href="https://html.spec.whatwg.org/multipage/parsing.html#parse-errors">Handle parse errors</a> instead of aborting.'
-                                checked={options.continueOnParseError}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='minifyCSS'
-                                label='minifyCSS'
-                                description='Minify CSS in style elements and style attributes (uses <a class="link" href="https://github.com/clean-css/clean-css">clean CSS</a>)'
-                                checked={options.minifyCSS}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='minifyJS'
-                                label='minifyJS'
-                                description='Minify JavaScript in script elements and event attributes (uses <a class="link" href="https://github.com/terser/terser">Terser</a>)'
-                                checked={options.minifyJS}
-                                onChange={handleOptionsChange}
-                            />
-                            <CheckboxWithText
-                                id='removeComments'
-                                label='removeComments'
-                                link={true}
-                                linkURL={'http://perfectionkills.com/experimenting-with-html-minifier/#remove_comments'}
-                                description='Strip HTML comments'
-                                checked={options.removeComments}
-                                onChange={handleOptionsChange}
-                            />
+                            {checkboxData.map((checkbox) => (
+                                <CheckboxWithText
+                                    key={checkbox.id}
+                                    id={checkbox.id}
+                                    label={checkbox.label}
+                                    description={checkbox.description}
+                                    checked={checkbox.checked}
+                                    onChange={checkbox.onChange}
+                                />
+                            ))}
                         </div>
                         <DialogFooter>
                             <DialogClose asChild>
