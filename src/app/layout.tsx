@@ -1,12 +1,12 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
 import { PHProvider } from "./providers";
-import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +32,7 @@ export default function RootLayout({
           <PostHogPageView />
           <Header />
           <div className="container">
-            <div className="grid md:grid-cols-5 md:gap-4">
+            <div className="grid md:grid-cols-5 md:gap-8">
               <div className="md:col-span-1 md:block hidden">
                 <Sidebar />
               </div>

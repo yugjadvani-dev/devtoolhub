@@ -1,12 +1,5 @@
 "use client";
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import ReceiptLong from '@mui/icons-material/ReceiptLong';
-import Box from '@mui/joy/Box';
-import IconButton from '@mui/joy/IconButton';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton, { listItemButtonClasses } from '@mui/joy/ListItemButton';
-import Typography from '@mui/joy/Typography';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
@@ -15,92 +8,51 @@ const Sidebar: React.FC = () => {
     const pathname = usePathname()
 
     return (
-        <Box
-            sx={{
-                width: 320,
-                pt: '2rem',
-                pl: '24px',
-            }}
-        >
-            <List
-                size="sm"
-                sx={(theme) => ({
-                    // Gatsby colors
-                    '--joy-palette-primary-plainColor': '#8a4baf',
-                    '--joy-palette-neutral-plainHoverBg': 'transparent',
-                    '--joy-palette-neutral-plainActiveBg': 'transparent',
-                    '--joy-palette-primary-plainHoverBg': 'transparent',
-                    '--joy-palette-primary-plainActiveBg': 'transparent',
-                    [theme.getColorSchemeSelector('dark')]: {
-                        '--joy-palette-text-secondary': '#635e69',
-                        '--joy-palette-primary-plainColor': '#d48cff',
-                    },
-
-                    '--List-insetStart': '32px',
-                    '--ListItem-paddingY': '0px',
-                    '--ListItem-paddingRight': '16px',
-                    '--ListItem-paddingLeft': '21px',
-                    '--ListItem-startActionWidth': '0px',
-                    '--ListItem-startActionTranslateX': '-50%',
-
-                    [`& .${listItemButtonClasses.root}`]: {
-                        borderLeftColor: 'divider',
-                    },
-                    [`& .${listItemButtonClasses.root}.${listItemButtonClasses.selected}`]: {
-                        borderLeftColor: 'currentColor',
-                    },
-                    '& [class*="startAction"]': {
-                        color: 'var(--joy-palette-text-tertiary)',
-                    },
-                })}
-            >
-                <ListItem nested>
-                    <ListItem component="div" startAction={<ReceiptLong />}>
-                        <Typography level="body-xs" sx={{ textTransform: 'uppercase' }}>
-                            Tools&apos;s
-                        </Typography>
-                    </ListItem>
-                    <List sx={{ '--List-gap': '0px' }}>
-                        <ListItem>
-                            <ListItemButton component="a" href="/" selected={pathname === '/' ? true : false}>Overview</ListItemButton>
-                        </ListItem>
-                    </List>
-                </ListItem>
-                <ListItem
-                    nested
-                    sx={{ my: 1 }}
-                    startAction={
-                        <IconButton
-                            variant="plain"
-                            size="sm"
-                            color="neutral"
-                        >
-                            <KeyboardArrowDown />
-                        </IconButton>
-                    }
-                >
-                    <ListItem>
-                        <Typography
-                            level="inherit"
-                            sx={{
-                                fontWeight: 'bold',
-                                color: 'text.primary',
-                            }}
-                        >
-                            Code Minifiers
-                        </Typography>
-                    </ListItem>
-                    <List sx={{ '--ListItem-paddingY': '8px' }}>
-                        <ListItem>
-                            <ListItemButton component="a" href="/html-minify" selected={pathname === '/html-minify' ? true : false}>HTML Minify</ListItemButton>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemButton component="a" href="/css-minify" selected={pathname === '/css-minify' ? true : false}>CSS Minify</ListItemButton>
-                        </ListItem>
-                    </List>
-                </ListItem>
-            </List>
-        </Box>
+        <div className="flex h-screen sticky top-16 w-full">
+            <div className="w-full h-full flex-col md:border-r bg-background pr-4 pt-3 flex">
+                {/* <div className="flex-1 overflow-y-auto py-4"> */}
+                    <nav className="flex flex-col gap-2 pt-4">
+                        <div className="space-y-1">
+                            <h3 className="text-sm font-medium text-muted-foreground">Tools</h3>
+                            <ul className="grid gap-1">
+                                <li>
+                                    <Link
+                                        href="/"
+                                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        prefetch={false}
+                                    >
+                                        Overview
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="space-y-1">
+                            <h3 className="text-sm font-medium text-muted-foreground">Minifiers</h3>
+                            <ul className="grid gap-1">
+                                <li>
+                                    <Link
+                                        href="/html-minify"
+                                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        prefetch={false}
+                                    >
+                                        HTML Minify
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/css-minify"
+                                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        prefetch={false}
+                                    >
+                                        CSS Minify
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                {/* </div> */}
+            </div>
+        </div>
     )
 }
 
