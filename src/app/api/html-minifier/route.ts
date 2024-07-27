@@ -15,10 +15,6 @@ export async function POST(request: Request, response: Request) {
 
       try {
         const minifiedHtml = await minify(html, {
-          // removeComments: true,
-          // collapseWhitespace: true,
-          // minifyJS: true,
-          // minifyCSS: true,
           ...options
         });
 

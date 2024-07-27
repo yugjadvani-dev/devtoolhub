@@ -2,18 +2,31 @@
 import React from 'react';
 import { Checkbox } from './ui/checkbox';
 
+// interface CheckboxWithTextProps {
+//     id: string;
+//     label: string;
+//     description: string;
+//     checked: boolean;
+//     onChange: (id: string, value: boolean) => void;
+// }
+
 interface CheckboxWithTextProps {
     id: string;
     label: string;
-    description: string;
-    checked: boolean;
-    onChange: (id: string, value: boolean) => void;
+    description: JSX.Element | string;
+    checked: boolean; // Expecting a boolean for the checked state
+    onCheckedChange: (checked: boolean) => void; // Match the expected type for onCheckedChange
 }
 
-const CheckboxWithText: React.FC<CheckboxWithTextProps> = ({ id, label, description, checked, onChange }) => {
+const CheckboxWithText: React.FC<CheckboxWithTextProps> = ({ id, label, description, checked, onCheckedChange }) => {
     return (
         <div className="items-top flex space-x-2">
-            <Checkbox id={id} checked={checked} onCheckedChange={(value: any) => onChange(id, value)} />
+            <Checkbox 
+            id={id} 
+            // checked={checked}
+            checked={checked}
+            onCheckedChange={onCheckedChange}
+              />
             <div className="grid gap-1.5 leading-none">
                 <label
                     htmlFor={id}
