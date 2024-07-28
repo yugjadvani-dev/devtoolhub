@@ -45,7 +45,6 @@ export async function POST(req: Request, res: Response) {
       })
     }
   } catch (error) {
-    console.error("Error fetching CSS minified data:", error);
     return Response.json(
       { error: "Internal server error" },
       { status: 500 }

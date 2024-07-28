@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import { ApiResponse } from "@/types/ApiResponse";
 import axios, { AxiosError } from "axios";
 import React from "react";
@@ -13,6 +14,7 @@ const CssMinify: React.FC = () => {
   const [minifiedCss, setMinifiedCss] = React.useState<string | null>(null);
 
   const { toast } = useToast();
+  const copyToClipboard = useCopyToClipboard();
 
   const handleMinify = async () => {
     try {
@@ -30,25 +32,6 @@ const CssMinify: React.FC = () => {
   const handleClear = () => {
     setMinifiedCss("");
     setInputCss("");
-  };
-
-  const copyToClipboard = (text: string) => {
-    if (navigator.clipboard) {
-      navigator.clipboard
-        .writeText(text)
-        .then(() => {
-          toast({
-            title: "Text copied to clipboard",
-          });
-        })
-        .catch((err) => {
-          toast({
-            title: "Could not copy text",
-            description: err,
-            variant: "destructive",
-          });
-        });
-    }
   };
 
   return (

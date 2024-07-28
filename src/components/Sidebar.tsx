@@ -47,6 +47,15 @@ const Sidebar: React.FC = () => {
                                         CSS Minify
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link
+                                        href="/javascript-minify"
+                                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        prefetch={false}
+                                    >
+                                        JavaScript Minify
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </nav>

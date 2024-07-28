@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+import useCopyToClipboard from '@/hooks/useCopyToClipboard';
 import { ApiResponse } from '@/types/ApiResponse';
 import axios, { AxiosError } from 'axios';
 import React from 'react';
@@ -226,9 +227,9 @@ const HTMLMinify: React.FC = () => {
         });
         return initialState;
     });
-    console.log("optionsState", optionsState)
 
     const { toast } = useToast();
+    const copyToClipboard = useCopyToClipboard();
 
     const handleOptionsChange = (id: string, checked: boolean) => {
         setOptionsState((prevState) => ({
@@ -257,25 +258,6 @@ const HTMLMinify: React.FC = () => {
     const handleClear = () => {
         setInputHtml("");
         setMinifyHtml("");
-    };
-
-    const copyToClipboard = (minifyHtml: string) => {
-        if (navigator.clipboard) {
-            navigator.clipboard
-                .writeText(minifyHtml)
-                .then(() => {
-                    toast({
-                        title: "Copy to clipboard"
-                    });
-                })
-                .catch((err) => {
-                    toast({
-                        title: "Could not copy text",
-                        description: err,
-                        variant: "destructive",
-                    });
-                });
-        }
     };
 
     const renderCheckboxes = (options: Record<string, Option>) => {
