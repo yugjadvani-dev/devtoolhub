@@ -58,6 +58,20 @@ const Sidebar: React.FC = () => {
                                 </li>
                             </ul>
                         </div>
+                        <div className="space-y-1">
+                            <h3 className="text-sm font-medium text-muted-foreground">Converter</h3>
+                            <ul className="grid gap-1">
+                                <li>
+                                    <Link
+                                        href="/rgba-to-hex-converter"
+                                        className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+                                        prefetch={false}
+                                    >
+                                        RGBA to HEX Converter
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
                     </nav>
                 {/* </div> */}
             </div>

@@ -10,32 +10,49 @@ const Footer = () => {
       <div className="container">
         <div className="flex gap-8 pb-8">
           <div>
-        <Link
-          href={"/"}
-          className="text-2xl font-bold text-white">
-          <strong>DevToolHub</strong>
-        </Link>
-        <div className="text-white leading-7 [&:not(:first-child)]:mt-2">
-                A Product by <Link href="https://x.com/jadvani_yug" className="underline">@yugjadvani</Link>
+            <Link
+              href={"/"}
+              className="text-2xl font-bold text-white">
+              <strong>DevToolHub</strong>
+            </Link>
+            <div className="text-white leading-7 [&:not(:first-child)]:mt-2">
+              A Product by <Link href="https://x.com/jadvani_yug" className="underline">@yugjadvani</Link>
             </div>
           </div>
-        <div>
-        <div className="text-white text-base font-semibold mb-3">Code Minifiers</div>
-          <ul className="flex items-start flex-col gap-3 [&>li]:mt-2">
-            <Link
-              href="/html-minify"
-              className="font-medium text-white text-base underline underline-offset-4"
-            >
-              HTML Minify
-            </Link>
-            <Link
-              href="/css-minify"
-              className="font-medium text-white text-base underline underline-offset-4"
-            >
-              CSS Minify
-            </Link>
-          </ul>
-        </div>
+          <div>
+            <div className="text-white text-base font-semibold mb-3">Minifiers</div>
+            <ul className="flex items-start flex-col gap-3 [&>li]:mt-2">
+              <Link
+                href="/html-minify"
+                className="font-medium text-white text-base underline underline-offset-4"
+              >
+                HTML Minify
+              </Link>
+              <Link
+                href="/css-minify"
+                className="font-medium text-white text-base underline underline-offset-4"
+              >
+                CSS Minify
+              </Link>
+              <Link
+                href="/javascript-minify"
+                className="font-medium text-white text-base underline underline-offset-4"
+              >
+                JavaScript Minify
+              </Link>
+            </ul>
+          </div>
+          <div>
+            <div className="text-white text-base font-semibold mb-3">Converter</div>
+            <ul className="flex items-start flex-col gap-3 [&>li]:mt-2">
+              <Link
+                href="/rgba-to-hex-converter"
+                className="font-medium text-white text-base underline underline-offset-4"
+              >
+                RGBA to HEX Converter
+              </Link>
+            </ul>
+          </div>
         </div>
         <Separator className="my-4" />
         <div className="flex items-center justify-between flex-wrap gap-4">
