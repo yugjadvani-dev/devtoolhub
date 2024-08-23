@@ -32,7 +32,7 @@ const TsToZodToolOverview: React.FC = () => {
       <p className="leading-7 [&:not(:first-child)]:mt-6">
         Consider the following TypeScript type before conversion:
       </p>
-      <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
+      <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto">
         <code>
           {`type User = {
   name: string;
@@ -44,7 +44,7 @@ const TsToZodToolOverview: React.FC = () => {
       <p className="leading-7 [&:not(:first-child)]:mt-6">
         After using the TypeScript to Zod Converter, the output is:
       </p>
-      <pre className="bg-gray-100 p-4 rounded-md overflow-x-auto">
+      <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto">
         <code className="whitespace-normal">
           {`const UserSchema = z.object({
   name: z.string(),
