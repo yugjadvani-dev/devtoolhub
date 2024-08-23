@@ -12,11 +12,13 @@ import React from "react";
 const CssMinify: React.FC = () => {
   const [inputCss, setInputCss] = React.useState<string>("");
   const [minifiedCss, setMinifiedCss] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const { toast } = useToast();
   const copyToClipboard = useCopyToClipboard();
 
   const handleMinify = async () => {
+    setIsLoading(true);
     try {
       const result = await axios.post("/api/css-minify", { input: inputCss });
       setMinifiedCss(result?.data?.minifiedCSS);
@@ -26,6 +28,8 @@ const CssMinify: React.FC = () => {
         title: `Error fetching minified HTML:, ${axiosError}`,
         variant: "destructive",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,9 +60,8 @@ const CssMinify: React.FC = () => {
         <Button
           disabled={inputCss?.length ? false : true}
           onClick={handleMinify}
-          className=""
         >
-          Minify CSS
+          {isLoading ? "Loading..." : "Minify CSS"}
         </Button>
       </div>
       {minifiedCss ? (

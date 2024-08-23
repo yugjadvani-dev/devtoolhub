@@ -10,18 +10,21 @@ const Footer = () => {
       <div className="container">
         <div className="flex gap-8 pb-8">
           <div>
-            <Link
-              href={"/"}
-              className="text-2xl font-bold text-white">
+            <Link href={"/"} className="text-2xl font-bold text-white">
               <strong>DevToolHub</strong>
             </Link>
             <div className="text-white leading-7 [&:not(:first-child)]:mt-2">
-              A Product by <Link href="https://x.com/jadvani_yug" className="underline">@yugjadvani</Link>
+              A Product by{" "}
+              <Link href="https://x.com/jadvani_yug" className="underline">
+                @yugjadvani
+              </Link>
             </div>
           </div>
           <div>
-            <div className="text-white text-base font-semibold mb-3">Minifiers</div>
-            <ul className="flex items-start flex-col gap-3 [&>li]:mt-2">
+            <div className="text-white text-base font-semibold mb-3">
+              Minifiers
+            </div>
+            <div className="flex items-start flex-col gap-3">
               <Link
                 href="/html-minify"
                 className="font-medium text-white text-base underline underline-offset-4"
@@ -40,18 +43,26 @@ const Footer = () => {
               >
                 JavaScript Minify
               </Link>
-            </ul>
+            </div>
           </div>
           <div>
-            <div className="text-white text-base font-semibold mb-3">Converter</div>
-            <ul className="flex items-start flex-col gap-3 [&>li]:mt-2">
+            <div className="text-white text-base font-semibold mb-3">
+              Converter
+            </div>
+            <div className="flex items-start flex-col gap-3">
               <Link
-                href="/rgba-to-hex-converter"
+                href="/rgba-to-hex"
                 className="font-medium text-white text-base underline underline-offset-4"
               >
-                RGBA to HEX Converter
+                RGBA to HEX
               </Link>
-            </ul>
+              <Link
+                href="/typescript-to-zod"
+                className="font-medium text-white text-base underline underline-offset-4"
+              >
+                Typescript to ZOD
+              </Link>
+            </div>
           </div>
         </div>
         <Separator className="my-4" />
@@ -62,13 +73,15 @@ const Footer = () => {
           <div className="flex h-5 items-center space-x-4 text-sm">
             <Link
               href={"/"}
-              className="font-medium text-white underline underline-offset-4">
+              className="font-medium text-white underline underline-offset-4"
+            >
               Privacy Policy
             </Link>
             <Separator orientation="vertical" />
             <Link
               href={"/"}
-              className="font-medium text-white underline underline-offset-4">
+              className="font-medium text-white underline underline-offset-4"
+            >
               Website terms
             </Link>
           </div>

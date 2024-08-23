@@ -1,6 +1,5 @@
 "use client";
-
-import JsMinifyToolOverview from "@/components/(overview)/JsMinifyToolOverview";
+import TsToZodToolOverview from "@/components/(overview)/TsToZodToolOverview";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,75 +9,86 @@ import { ApiResponse } from "@/types/ApiResponse";
 import axios, { AxiosError } from "axios";
 import React from "react";
 
-const JsMinify: React.FC = () => {
-  const [inputJs, setInputJs] = React.useState<string>("");
-  const [minifiedJs, setMinifiedJs] = React.useState<string | null>(null);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+const GenerateZodSchema = () => {
+  const [typescriptCode, setTypescriptCode] = React.useState("");
+  const [zodSchema, setZodSchema] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const { toast } = useToast();
   const copyToClipboard = useCopyToClipboard();
 
-  const handleMinify = async () => {
+  const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      const result = await axios.post("/api/javascript-minify", {
-        code: inputJs,
+      const response = await axios.post("/api/typescript-to-zod", {
+        body: typescriptCode,
+        keepComments: false,
+        skipParseJSDoc: false,
       });
-      setMinifiedJs(result?.data?.minifiedCode);
-    } catch (error) {
-      const axiosError = error as AxiosError<ApiResponse>;
-      toast({
-        title: `Error fetching minified HTML:, ${axiosError}`,
-        variant: "destructive",
-      });
+
+      if (response.data.success) {
+        setZodSchema(response.data.schema || "");
+        setError(response.data.error || "");
+      } else {
+        setError("Error generating schema");
+        toast({
+          title: error,
+          variant: "destructive",
+        });
+      }
+    } catch (e) {
+      const axiosError = e as AxiosError<ApiResponse>;
+      setError(axiosError.message);
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleClear = () => {
-    setMinifiedJs("");
-    setInputJs("");
+    setTypescriptCode("");
+    setZodSchema("");
+    setError("");
   };
 
   return (
     <>
       <Label htmlFor="inputJs" className="mb-3 flex">
-        JavaScript for minify
+        TypeScript to Zod Validator
       </Label>
       <Textarea
-        value={inputJs}
-        onChange={(e) => setInputJs(e.target.value)}
-        placeholder="Enter your JavaScript here..."
+        value={typescriptCode}
+        onChange={(e) => setTypescriptCode(e.target.value)}
+        placeholder="Enter your Typescript here..."
         className="resize-none h-full max-h-[30rem] min-h-[30rem]"
       />
       <div className="flex items-center justify-between mt-3">
         <Button
-          disabled={inputJs ? false : true}
+          disabled={typescriptCode ? false : true}
           onClick={handleClear}
           variant={"outline"}
         >
           Clear
         </Button>
         <Button
-          disabled={inputJs?.length ? false : true}
-          onClick={handleMinify}
+          disabled={typescriptCode?.length ? false : true}
+          onClick={handleSubmit}
         >
-          {isLoading ? "Loading..." : "Minify JavaScript"}
+          {isLoading ? "Loading..." : "Typescript to Zod"}
         </Button>
       </div>
-      {minifiedJs ? (
+      {zodSchema ? (
         <div className="mt-16">
           <Label htmlFor="inputJs" className="mb-3 flex">
             Output
           </Label>
-          {minifiedJs && (
+          {zodSchema && (
             <pre className="flex h-full max-h-[30rem] min-h-[30rem] overflow-y-scroll w-full rounded-md border border-input bg-indigo-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-normal">
-              {minifiedJs}
+              {zodSchema}
             </pre>
           )}
           <Button
-            onClick={() => copyToClipboard(minifiedJs)}
+            onClick={() => copyToClipboard(zodSchema)}
             className="mt-3 ml-auto flex"
           >
             Copy to Clipboard
@@ -86,9 +96,9 @@ const JsMinify: React.FC = () => {
         </div>
       ) : null}
       {/* Overview */}
-      <JsMinifyToolOverview />
+      <TsToZodToolOverview />
     </>
   );
 };
 
-export default JsMinify;
+export default GenerateZodSchema;
