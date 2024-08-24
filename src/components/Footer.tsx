@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="py-8 bg-primary">
       <div className="container">
-        <div className="flex gap-8 pb-8">
+        <div className="flex flex-wrap gap-8 pb-8">
           <div>
             <Link href={"/"} className="text-2xl font-bold text-white">
               <strong>DevToolHub</strong>

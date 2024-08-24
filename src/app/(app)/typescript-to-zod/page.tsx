@@ -2,6 +2,7 @@
 import TsToZodToolOverview from "@/components/(overview)/TsToZodToolOverview";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import useCopyToClipboard from "@/hooks/useCopyToClipboard";
@@ -14,6 +15,8 @@ const GenerateZodSchema = () => {
   const [zodSchema, setZodSchema] = React.useState("");
   const [error, setError] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [keepComments, setKeepComments] = React.useState(true);
+  const [skipParseJSDoc, setSkipParseJSDoc] = React.useState(true);
 
   const { toast } = useToast();
   const copyToClipboard = useCopyToClipboard();
@@ -23,8 +26,8 @@ const GenerateZodSchema = () => {
     try {
       const response = await axios.post("/api/typescript-to-zod", {
         body: typescriptCode,
-        keepComments: false,
-        skipParseJSDoc: false,
+        keepComments: keepComments,
+        skipParseJSDoc: skipParseJSDoc,
       });
 
       if (response.data.success) {
@@ -62,6 +65,24 @@ const GenerateZodSchema = () => {
         placeholder="Enter your Typescript here..."
         className="resize-none h-full max-h-[30rem] min-h-[30rem]"
       />
+      <div className="flex items-center justify-end flex-wrap gap-3">
+        <div className="flex items-center space-x-2 mt-3">
+          <Switch
+            checked={keepComments}
+            onCheckedChange={() => setKeepComments(!keepComments)}
+            id="keepComments"
+          />
+          <Label htmlFor="keepComments">Keep Comments</Label>
+        </div>
+        <div className="flex items-center space-x-2 mt-3">
+          <Switch
+            checked={skipParseJSDoc}
+            onCheckedChange={() => setSkipParseJSDoc(!skipParseJSDoc)}
+            id="skipParseJSDoc"
+          />
+          <Label htmlFor="skipParseJSDoc">Skip Parse JSDoc</Label>
+        </div>
+      </div>
       <div className="flex items-center justify-between mt-3">
         <Button
           disabled={typescriptCode ? false : true}
@@ -83,7 +104,7 @@ const GenerateZodSchema = () => {
             Output
           </Label>
           {zodSchema && (
-            <pre className="flex h-full max-h-[30rem] min-h-[30rem] overflow-y-scroll w-full rounded-md border border-input bg-indigo-50 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-normal">
+            <pre className="flex h-full max-h-[30rem] min-h-[30rem] overflow-y-scroll w-full rounded-md border border-input bg-gray-100 dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 whitespace-normal">
               {zodSchema}
             </pre>
           )}
