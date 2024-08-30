@@ -41,7 +41,8 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "terser": "^5.31.3",
-    "ts-to-zod": "^3.10.0"
+    "ts-to-zod": "^3.10.0",
+    "zod-to-ts": "^1.2.0"
   },
   "devDependencies": {
     "@types/clean-css": "^4.2.11",

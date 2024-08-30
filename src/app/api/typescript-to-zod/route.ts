@@ -6,45 +6,40 @@ import { generate } from "ts-to-zod";
 
 const tmpDir = os.tmpdir?.();
 
-export async function POST(req: NextRequest){
-  if(req.method === 'POST'){
-    const {keepComments, skipParseJSDoc, body} = await req.json();
-    // const {skipParseJSDoc,keepComments} = query;
+export async function POST(req: NextRequest) {
+  if (req.method === "POST") {
+    const { keepComments, skipParseJSDoc, body } = await req.json();
 
-      const filePath =
-    path.join(tmpDir, crypto.randomBytes(16).toString("hex")) + ".ts";
+    const filePath =
+      path.join(tmpDir, crypto.randomBytes(16).toString("hex")) + ".ts";
 
     try {
       const schemaGenerator = generate({
-      sourceText: body,
-      keepComments,
-      skipParseJSDoc
-    });
+        sourceText: body,
+        keepComments,
+        skipParseJSDoc,
+      });
 
-    const schema = schemaGenerator.getZodSchemasFile(filePath)
+      const schema = schemaGenerator.getZodSchemasFile(filePath);
 
-    const formattedSchema = schema
-      .split(/\r?\n/)
-      .slice(1)
-      .join("\n");
+      const formattedSchema = schema.split(/\r?\n/).slice(1).join("\n");
 
       return NextResponse.json({
         status: 200,
-        success:true,
+        success: true,
         schema: formattedSchema,
-        error: schemaGenerator.errors[0]
+        error: schemaGenerator.errors[0],
       });
-      
     } catch (error) {
       return NextResponse.json({
         status: 500,
-        error: 'Failed to convert'
-    })
+        error: "Failed to convert",
+      });
     }
   } else {
     return NextResponse.json({
-        status: 405,
-        message: `Method ${req.method} Not Allowed`,
-      });
+      status: 405,
+      message: `Method ${req.method} Not Allowed`,
+    });
   }
 }
