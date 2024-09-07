@@ -1,3 +1,4 @@
+import AdSense from "@/components/AdSense";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
@@ -28,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <AdSense pId="ca-pub-3383380915794879" />
+      </head>
       <PHProvider>
         <body className={inter.className}>
           <ThemeProvider
@@ -62,7 +66,7 @@ export default function RootLayout({
             data-y_margin="18"
             defer
           ></script>
-          <script
+          {/* <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3383380915794879"
             crossOrigin="anonymous"
@@ -80,7 +84,7 @@ export default function RootLayout({
             data-ad-format="auto"
             data-full-width-responsive="true"
           ></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> */}
         </body>
       </PHProvider>
     </html>
