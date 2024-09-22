@@ -3,17 +3,16 @@ import { cn } from "@/lib/utils";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import AdBanner from "../AdBanner";
 import AnimatedGradientText from "../magicui/animated-gradient-text";
 
 const Overview: React.FC = () => {
   return (
     <>
-      <AdBanner
+      {/* <AdBanner
         dataAdFormat="auto"
         dataFullWidthResponsive={true}
         dataAdSlot="6548389295"
-      />
+      /> */}
       <div className="z-10 flex items-start justify-start mb-8">
         <AnimatedGradientText className="m-0">
           ✨ <hr className="mx-2 h-4 w-[1px] shrink-0 bg-gray-300" />{" "}
