@@ -13,9 +13,50 @@ import { PHProvider } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DevToolHub",
+  title: "DevToolHub - Free Online Tools for Developers",
   description:
-    "DevToolHub offers a comprehensive suite of free online tools for developers, including formatters, validators, minifiers, escapers, encoders, decoders, message digesters, and various web resources, with regular updates and a commitment to user feedback.",
+    "DevToolHub provides a powerful collection of free online tools for developers. Access formatters, validators, minifiers, escapers, encoders, decoders, message digesters, and other essential web resources. Regularly updated with user feedback to meet modern development needs.",
+  keywords: [
+    "DevToolHub",
+    "developer tools",
+    "free online tools",
+    "code formatter",
+    "code validator",
+    "minifier",
+    "encoder",
+    "decoder",
+    "message digester",
+    "web resources for developers",
+    "programming tools",
+    "developer utilities",
+  ],
+  openGraph: {
+    title: "DevToolHub - Free Online Tools for Developers",
+    description:
+      "Explore DevToolHub for an extensive range of free online tools including code formatters, validators, minifiers, and more to boost your development workflow.",
+    url: "https://devtoolhub.vercel.app/",
+    images: [
+      {
+        url: "https://devtoolhub.vercel.app/image/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DevToolHub - Free Online Tools for Developers",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DevToolHub - Free Online Tools for Developers",
+    description:
+      "DevToolHub offers a suite of free tools for developers, including formatters, validators, encoders, decoders, and more to optimize your workflow.",
+    images: [
+      {
+        url: "https://devtoolhub.vercel.app/image/og-image.png",
+        alt: "DevToolHub - Free Online Tools for Developers",
+      },
+    ],
+  },
 };
 
 const PostHogPageView = dynamic(() => import("./PostHogPageView"), {
